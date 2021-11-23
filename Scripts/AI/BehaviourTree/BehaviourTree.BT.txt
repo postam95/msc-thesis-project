@@ -1,0 +1,62 @@
+tree("Root")
+	parallel
+		repeat mute tree("Alive")
+		repeat mute tree("Dead")
+
+tree("Alive")
+	fallback
+		tree("Flee")
+		tree("Cure")
+		while not IsHealthLessThan(40.0)
+			fallback
+				tree("Attack")
+				tree("Patrol")
+
+tree("Attack")
+	while SeePlayer
+		sequence
+			StopMoving
+			TargetPlayer
+			LookAtTarget
+			fallback
+				while ShotLinedUp
+					sequence
+						StopMoving
+						Wait(0.3)
+						Fire
+				while not ShotLinedUp
+					sequence
+						SetTargetDestination
+						MoveToFightPosition
+
+tree("Dead")
+	sequence
+		IsHealthLessThan(0.1)
+		StopMoving
+		Explode
+
+
+tree("Flee")
+	while IsHealthLessThan(40.0)
+		while not IsMedicineAvailable()
+			sequence
+				TakeCover
+				MoveToDestination
+
+tree("Cure")
+	while IsHealthLessThan(40.0)
+		while IsMedicineAvailable()
+			sequence
+				PickUpMedicine
+				MoveToMedicalCentre
+
+tree("Patrol")
+	while not IsHealthLessThan(40.0)
+		while not SeePlayer
+			sequence
+				random
+					PickWaypoint(1)
+					PickWaypoint(2)
+					PickWaypoint(3)
+					PickWaypoint(4)
+				MoveToDestination
