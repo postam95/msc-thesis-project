@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+// Represents a market object storage.
 public class MarketInventory : Inventory
 {
-    public int medicineLevel;
-    public int maximumMedicineLevel;
-    // Show the herbal level during the gameplay.
-    public Healthbar medicineLevelBar;
 
+    // Shows the medicine level during the gameplay.
+    public Healthbar medicineLevelBar;
+    // Stores the medicine level of the market.
+    public int medicineLevel;
+    // The maximum medicine level of the market.
+    public int maximumMedicineLevel;
+
+    // Start is called before the first frame update.
     public new void Start()
     {
         this.name = "MarketInventory";
@@ -16,12 +17,16 @@ public class MarketInventory : Inventory
         UpdateMarketLevelBar();
     }
 
+    // Increases the medicine level of the market
+    // by the parameter.
     public void IncreaseMedicineLevel(int increase)
     {
         medicineLevel += increase;
         UpdateMarketLevelBar();
     }
 
+    // Decreases the medicine level of the market
+    // by the parameter.
     public void DecreaseMedicineLevel(int decrease)
     {
         if (medicineLevel - decrease < 0)
@@ -35,6 +40,7 @@ public class MarketInventory : Inventory
         UpdateMarketLevelBar();
     }
 
+    // Returns whether the market is full.
     public bool IsMarketFull()
     {
         if (medicineLevel >= maximumMedicineLevel)
@@ -44,6 +50,7 @@ public class MarketInventory : Inventory
         return false;
     }
 
+    // Returns whether the market is nearly full.
     public bool IsMarketNearlyFull()
     {
         if (medicineLevel == maximumMedicineLevel - 1)
@@ -53,6 +60,20 @@ public class MarketInventory : Inventory
         return false;
     }
 
+    // Returns whether the market has medicine
+    // available.
+    public bool hasMedicineAvailable()
+    {
+        if (medicineLevel > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    // Updates the level bar that shows the medicine
+    // level in the game.
     private void UpdateMarketLevelBar()
     {
         if (medicineLevel > maximumMedicineLevel)

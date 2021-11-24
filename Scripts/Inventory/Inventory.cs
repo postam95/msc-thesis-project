@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Represents an object that stores something.
 public class Inventory : MonoBehaviour
 {
-	public string name;
 
-    public void Start()
-    {
-        
-    }
+	// All inventory has a uniqe name
+	// that indentifies them.
+	public string name;
 
 }

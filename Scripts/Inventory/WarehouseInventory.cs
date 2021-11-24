@@ -1,27 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+// Represents a warehouse object storage.
 public class WarehouseInventory : Inventory
 {
-    public int mineralLevel;
-    public int maximumMineralLevel;
-    // Show the herbal level during the gameplay.
-    public Healthbar mineralLevelBar;
 
+    // Shows the mineral level during the gameplay.
+    public Healthbar mineralLevelBar;
+    // Stores the mineral level of the warehouse.
+    public int mineralLevel;
+    // The maximum mineral level of the warehouse.
+    public int maximumMineralLevel;
+
+    // Start is called before the first frame update.
     public new void Start()
     {
-        this.name = "MineralInventory";
+        this.name = "WarehouseInventory";
         mineralLevel = 0;
         UpdateMineralLevelBar();
     }
 
+    // Increases the mineral level of the warehouse
+    // by the parameter.
     public void IncreaseMineralLevel(int increase)
     {
         mineralLevel += increase;
         UpdateMineralLevelBar();
     }
 
+    // Decreases the mineral level of the warehouse
+    // by the parameter.
     public void DecreaseMineralLevel(int decrease)
     {
         if (mineralLevel - decrease < 0)
@@ -35,6 +40,7 @@ public class WarehouseInventory : Inventory
         UpdateMineralLevelBar();
     }
 
+    // Returns whether the warehouse is full.
     public bool IsWarehouseFull()
     {
         if (mineralLevel >= maximumMineralLevel)
@@ -44,7 +50,7 @@ public class WarehouseInventory : Inventory
         return false;
     }
 
-
+    // Returns whether the warehouse is empty.
     public bool IsWarehouseEmpty()
     {
         if (mineralLevel == 0)
@@ -54,6 +60,7 @@ public class WarehouseInventory : Inventory
         return false;
     }
 
+    // Returns whether the warehouse is nearly full.
     public bool IsWarehouseNearlyFull()
     {
         if (mineralLevel == maximumMineralLevel - 1)
@@ -63,6 +70,8 @@ public class WarehouseInventory : Inventory
         return false;
     }
 
+    // Updates the level bar that shows the mineral
+    // level in the game.
     private void UpdateMineralLevelBar()
     {
         if (mineralLevel > maximumMineralLevel)
