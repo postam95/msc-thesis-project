@@ -47,7 +47,7 @@ public class MiningState : State
         if (miner.IsMineralBucketFull())
         {
             miner.StopMiningMineral();
-            miner.ChangeState(TakeMineralsHome.Instance);
+            miner.ChangeState(TakeMineralsHomeState.Instance);
         }
 
         Debug.Log("FSM Id = " + miner.CharacterId + " miner is in mining state.");

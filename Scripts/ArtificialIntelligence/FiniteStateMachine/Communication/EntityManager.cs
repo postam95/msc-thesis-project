@@ -10,12 +10,12 @@ public class EntityManager
     private static readonly object padlock = new object();
     // It stores agents by its id so the EntityManager can access
     // them directly.
-    private Dictionary<int, BaseCharacter> FsmCharacters;
+    private Dictionary<int, BaseCharacter> fsmCharacters;
 
     // Initializes the object to provide an empty database.
     public EntityManager()
     {
-        FsmCharacters = new Dictionary<int, BaseCharacter>();
+        fsmCharacters = new Dictionary<int, BaseCharacter>();
     }
 
     // Handles the singleton object.
@@ -37,20 +37,20 @@ public class EntityManager
     // Registers FSM characters.
     public void AddFsmCharacter(BaseCharacter baseCharacter)
     {
-        FsmCharacters[baseCharacter.CharacterId] = baseCharacter;
+        fsmCharacters[baseCharacter.CharacterId] = baseCharacter;
     }
 
     // Returns a character by its id.
     public BaseCharacter GetCharacterById(int id)
     {
-        return FsmCharacters[id];
+        return fsmCharacters[id];
     }
 
     // Returns characters except one that identified by its id.
     public List<BaseCharacter> GetAllCharactersExceptOneById(int id)
     {
         List<BaseCharacter> characters = new List<BaseCharacter>();
-        foreach (KeyValuePair<int, BaseCharacter> entry in FsmCharacters)
+        foreach (KeyValuePair<int, BaseCharacter> entry in fsmCharacters)
         {
             if (entry.Key != id)
             {
@@ -63,9 +63,9 @@ public class EntityManager
     // Removes a character from the database of this object.
     public bool RemoveCharacter(BaseCharacter baseCharacter)
     {
-        if (FsmCharacters.ContainsKey(baseCharacter.CharacterId))
+        if (fsmCharacters.ContainsKey(baseCharacter.CharacterId))
         {
-            FsmCharacters.Remove(baseCharacter.CharacterId);
+            fsmCharacters.Remove(baseCharacter.CharacterId);
             return true;
         }
         return false;

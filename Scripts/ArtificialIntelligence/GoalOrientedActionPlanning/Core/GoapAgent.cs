@@ -35,7 +35,6 @@ public abstract class GoapAgent : MonoBehaviour
         characterId = nextId++;
     }
 
-    //LateUpdate is called every frame, if the Behaviour is enabled.
     //LateUpdate is called after all Update functions have been called.
     public void LateUpdate()
     {
@@ -47,18 +46,16 @@ public abstract class GoapAgent : MonoBehaviour
 
         if (ReadyToPlan() && HasGoal())
         {
-            planner = new GoapPlanner(actions, this);
-            actionQueue = planner.Plan(currentGoal);
+            planner = new GoapPlanner(actions);
+            actionQueue = planner.Plan(currentGoal, GenerateAgentRelevantStates());
         }
 
-        // Ha az akciók listája üres
         if (PlanHasBeenExecuted())
         {
             currentGoal = null;
             planner = null;
         }
 
-        // Ha van tervünk, és még van hátralévõ akció a sorban.
         if (IsPlanRunning())
         {
             currentAction = actionQueue.Dequeue();

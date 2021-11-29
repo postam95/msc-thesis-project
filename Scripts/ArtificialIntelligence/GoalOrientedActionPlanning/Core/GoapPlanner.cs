@@ -7,42 +7,44 @@ using UnityEngine;
 // goal of the GOAP Agent.
 public class GoapPlanner
 {
+
     // Stores the list of the GOAP Actions which
     // can be used by the GOAP Planner.
-    private List<GoapAction> actions;
+    public List<GoapAction> actions { get; }
     // Stores a possible plan.
     private GoapAction[] possibleSolution;
     // Stores the best plan,
     private Queue<GoapAction> bestSolution;
-    // This GOAP Agent needs a plan.
-    private GoapAgent owner;
     // It stores the cost of the best plan.
     private float bestPlanCost;
     // Whether the planner algorithm find a
     // solution for the.
     private bool hasSolution;
+    // Stores the current world states relevant
+    // to the caller agent.
+    private Dictionary<Conditions, bool> baseState;
 
     // Initializes the most basic properties of the planner.
-    public GoapPlanner(List<GoapAction> actions, GoapAgent goapAgent)
+    public GoapPlanner(List<GoapAction> actions)
     {
         this.actions = new List<GoapAction>();
         foreach (GoapAction goapAction in actions)
         {
             this.actions.Add(goapAction);
         }
-        possibleSolution = new GoapAction[actions.Count];
-        owner = goapAgent;
+        this.possibleSolution = new GoapAction[actions.Count];
     }
 
     // Final preparation for the planning.
-    public Queue<GoapAction> Plan(GoapGoal goal)
+    public Queue<GoapAction> Plan(GoapGoal goal, Dictionary<Conditions, bool> newState)
     {
         List<GoapAction> usableActions = new List<GoapAction>();
-        Dictionary<Conditions, bool> currentState = owner.GenerateAgentRelevantStates();
-
-        foreach (KeyValuePair<Conditions, bool> state in currentState)
+        Dictionary<Conditions, bool> currentState = new Dictionary<Conditions, bool>();
+        this.baseState = new Dictionary<Conditions, bool>();
+        foreach (KeyValuePair<Conditions, bool> subState in newState)
         {
-            Debug.Log(state.Key);
+            this.baseState.Add(subState.Key, subState.Value);
+            currentState.Add(subState.Key, subState.Value);
         }
 
         foreach (GoapAction goapAction in actions)
@@ -112,7 +114,11 @@ public class GoapPlanner
     // starting state and the alreary executed actions.
     private Dictionary<Conditions, bool> RegenerateCurrentState(int index)
     {
-        Dictionary<Conditions, bool> newState = owner.GenerateAgentRelevantStates();
+        Dictionary<Conditions, bool> newState = new Dictionary<Conditions, bool>();
+        foreach(KeyValuePair<Conditions, bool> subState in this.baseState)
+        {
+            newState.Add(subState.Key, subState.Value);
+        }
         for (int i = 0; i <= index; i++)
         {
             foreach (KeyValuePair<Conditions, bool> effect in possibleSolution[i].afterEffects)

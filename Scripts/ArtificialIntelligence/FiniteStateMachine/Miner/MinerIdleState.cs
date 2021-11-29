@@ -46,7 +46,7 @@ public class MinerIdleState : State
 
         if (!miner.IsWarehouseFull())
         {
-            miner.ChangeState(GoForMining.Instance);
+            miner.ChangeState(GoForMiningState.Instance);
         }
 
         Debug.Log("FSM Id = " + miner.CharacterId + " miner is in idle state.");

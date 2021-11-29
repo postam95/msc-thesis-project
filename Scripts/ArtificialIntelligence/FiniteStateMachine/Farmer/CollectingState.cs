@@ -48,7 +48,7 @@ public class CollectingState : State
         if (farmer.IsHerbalBucketFull())
         {
             farmer.StopCollectingHerbal();
-            farmer.ChangeState(TakeHerbalsHome.Instance);
+            farmer.ChangeState(TakeHerbalsHomeState.Instance);
         }
 
         Debug.Log("FSM Id = " + farmer.CharacterId + " farmer is in collecting state.");

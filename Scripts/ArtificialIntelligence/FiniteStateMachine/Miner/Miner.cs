@@ -38,9 +38,9 @@ public class Miner : BaseCharacter
     {
         // Setting up the Miner's FSM.
         finiteStateMachine = new FiniteStateMachine(this);
-        finiteStateMachine.CurrentState = GoForMining.Instance;
-        finiteStateMachine.PreviousState = GoForMining.Instance;
-        GoForMining.Instance.BeforeState(this);
+        finiteStateMachine.CurrentState = GoForMiningState.Instance;
+        finiteStateMachine.PreviousState = GoForMiningState.Instance;
+        GoForMiningState.Instance.BeforeState(this);
 
         // Initialization.
         navMeshAgent = this.GetComponent<NavMeshAgent>();

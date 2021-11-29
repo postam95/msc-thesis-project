@@ -235,7 +235,6 @@ public class ShamanGoapAgent : GoapAgent
     public override Dictionary<Conditions, bool> GenerateAgentRelevantStates()
     {
         Dictionary<Conditions, bool> states = new Dictionary<Conditions, bool>();
-        Debug.Log("alma");
         if (medicineLevel > 0.0f)
         {
             states.Add(Conditions.hasMedicine, true);

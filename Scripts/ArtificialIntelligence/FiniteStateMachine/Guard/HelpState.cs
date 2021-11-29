@@ -61,7 +61,6 @@ public class HelpState : State
 
         if (!guard.navMeshAgent.hasPath)
         {
-
             guard.ChangeState(PatrolState.Instance);
         }
 

@@ -32,9 +32,9 @@ public class Farmer : BaseCharacter
     {
         // Setting up the Farmer's FSM.
         finiteStateMachine = new FiniteStateMachine(this);
-        finiteStateMachine.CurrentState = GoForHerbals.Instance;
-        finiteStateMachine.PreviousState = GoForHerbals.Instance;
-        GoForHerbals.Instance.BeforeState(this);
+        finiteStateMachine.CurrentState = GoForHerbalsState.Instance;
+        finiteStateMachine.PreviousState = GoForHerbalsState.Instance;
+        GoForHerbalsState.Instance.BeforeState(this);
 
         // Initialization.
         navMeshAgent = this.GetComponent<NavMeshAgent>();
