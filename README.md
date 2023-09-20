@@ -1,4 +1,4 @@
-# MSC Thesis Summary
+# MSc Thesis Summary
 
 With this thesis project, I have undertaken to immerse myself in a field unknown to 
 me, in the world of game development, including applied artificial intelligence, to expand 
