@@ -62,7 +62,7 @@ program library.
 My development plans include replacing the behavioral tree support library with a 
 proprietary framework, and a comprehensive artificial intelligence framework that 
 incorporates all three techniques that allow rapid and efficient development for those who 
-choose Unity in an interactive, graphical interface. to make their game, and want to quickly 
+choose Unity in an interactive, graphical interface to make their game, and want to quickly 
 and easily create a playground that is bustling with diverse and unpredictable yet lifelike 
 entities.
 
