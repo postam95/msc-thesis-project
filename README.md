@@ -33,7 +33,6 @@ animation in order to create the necessary conditions for their appearance. We c
 to their behavior, which can range from extremely simple, non-responsive, static agents to 
 characters with quite complex state machines, behavioral trees, or goal-oriented behavior.
 
-
 The first major difficulty in preparing my thesis was to build some kind of system in 
 the world of artificial intelligence in game development. The intelligence of games is a 
 separate world and somewhat detached from academic artificial intelligence. This is an 
@@ -51,7 +50,7 @@ Finally, the last challenge, of course, was to develop the artificial intelligen
 itself. Different methods can be applied in different situations, and they have different 
 advantages and disadvantages, which I tried to present during the dissertation. For example, 
 a state machine is extremely well designed, transparent, and relatively easy to program and 
-repair, but when programming more complex behaviors, it can easily result in spaghetti code 
+debug, but when programming more complex behaviors, it can easily result in spaghetti code 
 that is difficult to scale and maintain.
 
 During the game development, I managed to implement a state machine system that 
