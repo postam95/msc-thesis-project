@@ -3,7 +3,7 @@ using UnityEngine;
 
 // Represents a GOAP Planner. The GOAP Planner is
 // the most important part of my GOAP system. It has
-// to provide a sequence of actions to ahieve the
+// to provide a sequence of actions to achieve the
 // goal of the GOAP Agent.
 public class GoapPlanner
 {
